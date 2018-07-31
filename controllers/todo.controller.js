@@ -7,13 +7,13 @@ exports.getToDos = async function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
     var limit = req.query.limit ? req.query.limit : 10;
     try {
-
-        var todos = await TodoService.getTodos({}, page, limit);
+        
+        var todos = await TodoService.getTodos({},parseInt(page), parseInt(limit));
 
         return res.status(200).json({ status: 200, data: todos, message: "ToDo's received successfully!" });
 
     } catch (error) {
-        return res.status(400).json({ status: 400, message: e.message });
+        return res.status(400).json({ status: 400, message: error.message });
     }
 
 };
@@ -24,7 +24,7 @@ exports.createToDo = async function (req, res, next) {
         description: req.body.description,
         status: req.body.status
     }
-    
+
     try {
 
         var createdToDo = await TodoService.createTodo(todo);

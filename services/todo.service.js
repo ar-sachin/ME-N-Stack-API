@@ -10,12 +10,13 @@ exports.getTodos = async function (query, page, limit) {
     };
 
     try {
-        
-        var todos = await ToDo.paginate(query,options);
-        
+
+        var todos = await ToDo.paginate(query, options);
+
         return todos;
 
     } catch (error) {
+        console.log(error.message);
         throw error('Error while fetching records!');
     }
 
