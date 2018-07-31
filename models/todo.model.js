@@ -5,7 +5,7 @@ var ToDoSchema=new mongoose.Schema({
     title:String,
     description:String,
     dueDate:Date,
-    status:String
+    status:Boolean
 });
 
 ToDoSchema.plugin(mongoosePaginate);
